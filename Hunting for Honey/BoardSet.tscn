@@ -10,4 +10,3 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 55, 72 )
 cell_half_offset = 1
 format = 1
-tile_data = PoolIntArray( -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0 )
