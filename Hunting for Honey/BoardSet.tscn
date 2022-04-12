@@ -5,8 +5,9 @@
 [node name="BoardSet" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 0.831721, 0.831721 )
 tile_set = ExtResource( 1 )
-cell_size = Vector2( 55, 72 )
-cell_half_offset = 1
+cell_size = Vector2( 49, 41 )
+cell_half_offset = 0
+compatibility_mode = true
+centered_textures = true
 format = 1
