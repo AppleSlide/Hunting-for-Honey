@@ -37,8 +37,10 @@ func update_spaceLabel(space):
 
 func _on_MoveButton_pressed():
 	moveBtn.disabled = true
+	disableCollision()
 	GameState.currentPlayer.move(rng.randi_range(1,6))
 	yield(GameState.currentPlayer, 'movedone')
+	enableCollision()
 	moveBtn.visible = false
 	endBtn.visible = true
 
@@ -64,6 +66,21 @@ func _on_Button_pressed():
 	$HUD/HBoxContainer/MoveButton.disabled = false
 	$HUD/TurnSwitch.visible = false
 
+func disableCollision():
+	$Score10/CS1.disabled = true
+	$Score50/CS1.disabled = true
+	$Minus10/CS1.disabled = true
+	$Minus50/CollisionShape2D.disabled = true
+	$DoubleMove/CS1.disabled = true
+	$MoveBack2/CollisionShape2D.disabled = true
+
+func enableCollision():
+	$Score10/CS1.disabled = false
+	$Score50/CS1.disabled = false
+	$Minus10/CS1.disabled = false
+	$Minus50/CollisionShape2D.disabled = false
+	$DoubleMove/CS1.disabled = false
+	$MoveBack2/CollisionShape2D.disabled = false
 
 
 
