@@ -4,13 +4,15 @@ extends Node2D
 onready var cam = $GameCam
 onready var p1 = $Player1
 onready var p2 = $Player2
+onready var p3 = $Player3
+onready var p4 = $Player4
 onready var plabel = $HUD/HBoxContainer/PlayerLabel
 onready var spaceLabel = $HUD/HBoxContainer/SpaceLabel
 onready var moveBtn = $HUD/HBoxContainer/MoveButton
 onready var endBtn = $HUD/HBoxContainer/EndTurn
 var rng = RandomNumberGenerator.new()
 
-var nextPlayer = ["Player 2", "Player 1"]
+var nextPlayer = ["Player 2", "Player 3", "Player 4", "Player 1"]
 var currPlayerIdx = 0 
 
 # Called when the node enters the scene tree for the first time.

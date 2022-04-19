@@ -9,6 +9,8 @@ var space = 0
 var dir = Vector2.RIGHT
 var speed = 2
 var tilesize = 128
+var score = 0
+var move_space = 0
 
 signal movedone
 
@@ -20,6 +22,7 @@ func _ready():
 	position.y = 64
 
 func move(spaces):
+	move_space = spaces
 	for n in spaces:
 		movespace()
 		yield(tween, "tween_completed")
@@ -42,3 +45,30 @@ func movespace():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Score10_body_entered(body):
+	score = score + 10
+	
+
+
+func _on_Score50_body_entered(body):
+	score = score + 50
+
+
+func _on_DoubleMove_body_entered(body):
+	move(spaces)
+
+
+func _on_Minus10_body_entered(body):
+	score = score - 10
+
+
+func _on_Minus50_body_entered(body):
+	score = score - 50
+
+
+
+func _on_MoveBack2_body_entered(body):
+	pass # Replace with function body.
+	# NEED TO MAKE A MOVE BACK FUNCTION
