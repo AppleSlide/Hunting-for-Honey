@@ -54,6 +54,7 @@ func _on_Score10_body_entered(body):
 
 func _on_Score50_body_entered(body):
 	score = score + 50
+	
 
 
 func _on_DoubleMove_body_entered(body):

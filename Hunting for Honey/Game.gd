@@ -14,6 +14,7 @@ var rng = RandomNumberGenerator.new()
 
 var nextPlayer = ["Player 2", "Player 3", "Player 4", "Player 1"]
 var currPlayerIdx = 0 
+var scoreArray = [0, 0, 0, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
