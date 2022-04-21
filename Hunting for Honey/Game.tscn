@@ -5,22 +5,22 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18.875, 16 )
+extents = Vector2( 24.5, 22.75 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18, 13.5 )
+extents = Vector2( 29, 23.25 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 19.25, 15.75 )
+extents = Vector2( 23.125, 21.375 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 15.75, 15 )
+extents = Vector2( 29.5, 30.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 19, 15 )
+extents = Vector2( 24.5, 26.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 17.5, 11.5313 )
+extents = Vector2( 27.5, 27.5 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -120,6 +120,7 @@ __meta__ = {
 }
 
 [node name="TurnSwitch" type="ColorRect" parent="HUD"]
+visible = false
 modulate = Color( 0.87451, 0.121569, 0.121569, 1 )
 margin_left = 240.0
 margin_top = 100.0
@@ -206,7 +207,7 @@ position = Vector2( 417, 543 )
 shape = SubResource( 1 )
 
 [node name="CS14" type="CollisionShape2D" parent="Score10"]
-position = Vector2( 292, 540 )
+position = Vector2( 289, 546 )
 shape = SubResource( 1 )
 
 [node name="CS15" type="CollisionShape2D" parent="Score10"]
@@ -214,25 +215,25 @@ position = Vector2( 30, 544 )
 shape = SubResource( 1 )
 
 [node name="CS17" type="CollisionShape2D" parent="Score10"]
-position = Vector2( 30, 480 )
+position = Vector2( 30.5, 478.25 )
 shape = SubResource( 1 )
 
 [node name="CS18" type="CollisionShape2D" parent="Score10"]
-position = Vector2( 31, 222 )
+position = Vector2( 34, 225 )
 shape = SubResource( 1 )
 
 [node name="CS19" type="CollisionShape2D" parent="Score10"]
-position = Vector2( 32, 158 )
+position = Vector2( 38, 157.5 )
 shape = SubResource( 1 )
 
 [node name="CS20" type="CollisionShape2D" parent="Score10"]
-position = Vector2( 30, 281 )
+position = Vector2( 34, 289 )
 shape = SubResource( 1 )
 
 [node name="Score50" type="Area2D" parent="."]
 
 [node name="CS1" type="CollisionShape2D" parent="Score50"]
-position = Vector2( 30, 30 )
+position = Vector2( 32, 39.75 )
 shape = SubResource( 2 )
 
 [node name="CS2" type="CollisionShape2D" parent="Score50"]
@@ -254,7 +255,7 @@ position = Vector2( 988, 417 )
 shape = SubResource( 3 )
 
 [node name="CS3" type="CollisionShape2D" parent="DoubleMove"]
-position = Vector2( 480, 546 )
+position = Vector2( 480, 544 )
 shape = SubResource( 3 )
 
 [node name="Minus10" type="Area2D" parent="."]
@@ -280,7 +281,7 @@ position = Vector2( 669, 34 )
 shape = SubResource( 5 )
 
 [node name="CS6" type="CollisionShape2D" parent="Minus10"]
-position = Vector2( 30, 354 )
+position = Vector2( 32.5, 351.5 )
 shape = SubResource( 5 )
 
 [node name="CS7" type="CollisionShape2D" parent="Minus10"]
@@ -318,17 +319,17 @@ position = Vector2( 97, 542 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Minus50"]
-position = Vector2( 220, 546 )
+position = Vector2( 223, 545 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Minus50"]
-position = Vector2( 30, 98 )
+position = Vector2( 35.5, 96.5 )
 shape = SubResource( 4 )
 
 [node name="MoveBack2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MoveBack2"]
-position = Vector2( 31, 418 )
+position = Vector2( 32.5, 417.5 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="MoveBack2"]
@@ -339,6 +340,8 @@ shape = SubResource( 6 )
 position = Vector2( 992, 97 )
 shape = SubResource( 6 )
 
+[connection signal="pressed" from="HUD/HBoxContainer/MoveButton" to="." method="_on_MoveButton_pressed"]
+[connection signal="pressed" from="HUD/HBoxContainer/EndTurn" to="." method="_on_EndTurn_pressed"]
 [connection signal="pressed" from="HUD/TurnSwitch/VBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="body_entered" from="Score10" to="Player2" method="_on_Score10_body_entered"]
 [connection signal="body_entered" from="Score10" to="Player1" method="_on_Score10_body_entered"]

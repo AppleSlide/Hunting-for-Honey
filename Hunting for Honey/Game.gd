@@ -39,12 +39,14 @@ func update_spaceLabel(space):
 func _on_MoveButton_pressed():
 	var nowIdx = currPlayerIdx
 	moveBtn.disabled = true
-	disableCollision()
+	##disableCollision()
 	GameState.currentPlayer.move(rng.randi_range(1,6))
 	yield(GameState.currentPlayer, 'movedone')
 	enableCollision()
 	moveBtn.visible = false
 	honeyPoints[nowIdx] = honeyPoints[nowIdx] + GameState.currentPlayer.score
+	print(honeyPoints[0])
+	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3]) 
 	endBtn.visible = true
 
 func _on_EndTurn_pressed():
