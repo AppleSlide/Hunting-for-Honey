@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var cam = $GameCam
+onready var cam = $Camera2D
 onready var p1 = $Player1
 onready var p2 = $Player2
 onready var p3 = $Player3
@@ -14,7 +14,7 @@ var rng = RandomNumberGenerator.new()
 
 var nextPlayer = ["Player 2", "Player 3", "Player 4", "Player 1"]
 var currPlayerIdx = 0 
-var scoreArray = [0, 0, 0, 0]
+var honeyPoints = [0, 0, 0, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,12 +37,14 @@ func update_spaceLabel(space):
 	spaceLabel.text = str(space)	
 
 func _on_MoveButton_pressed():
+	var nowIdx = currPlayerIdx
 	moveBtn.disabled = true
 	disableCollision()
 	GameState.currentPlayer.move(rng.randi_range(1,6))
 	yield(GameState.currentPlayer, 'movedone')
 	enableCollision()
 	moveBtn.visible = false
+	honeyPoints[nowIdx] = honeyPoints[nowIdx] + GameState.currentPlayer.score
 	endBtn.visible = true
 
 func _on_EndTurn_pressed():
@@ -57,6 +59,12 @@ func _on_Button_pressed():
 			GameState.currentPlayer = p2
 			currPlayerIdx = 1
 		1:
+			GameState.currentPlayer = p3
+			currPlayerIdx = 2
+		2:
+			GameState.currentPlayer = p4
+			currPlayerIdx = 3
+		3:
 			GameState.currentPlayer = p1
 			currPlayerIdx = 0
 	GameState.update_spaceLabel(GameState.currentPlayer.space)
@@ -66,6 +74,7 @@ func _on_Button_pressed():
 	$HUD/HBoxContainer/EndTurn.visible = false
 	$HUD/HBoxContainer/MoveButton.disabled = false
 	$HUD/TurnSwitch.visible = false
+
 
 func disableCollision():
 	$Score10/CS1.disabled = true

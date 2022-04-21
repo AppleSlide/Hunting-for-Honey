@@ -4,7 +4,7 @@ extends Node2D
 onready var sprite = $Sprite
 export var player = 0;
 onready var tween = $Tween
-var sprites = [preload("res://assets/bee_model.jpg"), preload("res://assets/p2.png")]
+var sprites = [preload("res://Assets/Grass1.png"), preload("res://Assets/Grass1.png"), preload("res://Assets/Stup.png"), preload("res://Assets/Queen_bee_model.jpg")]
 var space = 0
 var dir = Vector2.RIGHT
 var speed = 2
@@ -17,7 +17,8 @@ signal movedone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.texture = sprites[player]
+	##sprite.texture = sprites[player]
+	sprite.set_texture(sprites[player])
 	position.x = 64
 	position.y = 64
 
@@ -30,6 +31,7 @@ func move(spaces):
 	emit_signal("movedone")
 
 func movespace():
+	score = 0
 	match space:
 		0: dir = Vector2.RIGHT
 		11: dir = Vector2.DOWN
@@ -58,7 +60,7 @@ func _on_Score50_body_entered(body):
 
 
 func _on_DoubleMove_body_entered(body):
-	move(spaces)
+	move(move_space)
 
 
 func _on_Minus10_body_entered(body):
