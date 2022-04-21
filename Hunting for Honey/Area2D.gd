@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 
 onready var sprite = $Sprite
@@ -19,8 +19,8 @@ signal movedone
 func _ready():
 	##sprite.texture = sprites[player]
 	sprite.set_texture(sprites[player])
-	position.x = 64
-	position.y = 64
+	position.x = 30
+	position.y = 30
 
 func move(spaces):
 	move_space = spaces
@@ -73,4 +73,28 @@ func _on_Minus50_body_entered(body):
 
 func _on_MoveBack2_body_entered(body):
 	pass # Replace with function body.
-	# NEED TO MAKE A MOVE BACK FUNCTION
+	#NEED TO MAKE THE MOVE BACK FUNCTION
+
+
+func _on_Score10_area_entered(area):
+	score = score + 10
+
+
+func _on_Score50_area_entered(area):
+	score = score + 50
+
+
+func _on_DoubleMove_area_entered(area):
+	move(move_space)
+
+
+func _on_Minus10_area_entered(area):
+	score = score - 10
+
+
+func _on_Minus50_area_entered(area):
+	score = score - 50
+
+
+func _on_MoveBack2_area_entered(area):
+	score = 1000

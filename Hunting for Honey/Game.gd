@@ -12,6 +12,8 @@ onready var moveBtn = $HUD/HBoxContainer/MoveButton
 onready var endBtn = $HUD/HBoxContainer/EndTurn
 var rng = RandomNumberGenerator.new()
 
+var nowIdx = 0
+
 var nextPlayer = ["Player 2", "Player 3", "Player 4", "Player 1"]
 var currPlayerIdx = 0 
 var honeyPoints = [0, 0, 0, 0]
@@ -37,17 +39,20 @@ func update_spaceLabel(space):
 	spaceLabel.text = str(space)	
 
 func _on_MoveButton_pressed():
-	var nowIdx = currPlayerIdx
 	moveBtn.disabled = true
-	##disableCollision()
+	disableCollision()
 	GameState.currentPlayer.move(rng.randi_range(1,6))
 	yield(GameState.currentPlayer, 'movedone')
 	enableCollision()
 	moveBtn.visible = false
 	honeyPoints[nowIdx] = honeyPoints[nowIdx] + GameState.currentPlayer.score
 	print(honeyPoints[0])
-	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3]) 
+	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
+	GameState.currentPlayer.score = 0 
 	endBtn.visible = true
+	nowIdx = nowIdx + 1
+	if(nowIdx > 3):
+		nowIdx = 0
 
 func _on_EndTurn_pressed():
 	$HUD/TurnSwitch/VBoxContainer/Label.text = nextPlayer[currPlayerIdx] + "'s Turn"
