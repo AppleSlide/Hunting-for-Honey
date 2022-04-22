@@ -10,6 +10,7 @@ var speed = 2
 var tilesize = 64
 var score = 0
 var move_space = 0
+var id = 0
 
 signal movedone
 
@@ -24,8 +25,9 @@ func move(spaces):
 	for n in spaces:
 		movespace()
 		yield(tween, "tween_completed")
-		#tween.stop()
 		GameState.update_spaceLabel(space)
+	collision.visible = true
+	collision.set_disabled(false)
 	emit_signal("movedone")
 
 func movespace():
@@ -46,27 +48,32 @@ func checkCollision():
 
 
 func _on_Score10_area_entered(body):
-	score = score + 10
-	print("BODY ENTERED ENTERED + 10, SCORE = " + str(score))
+	if(body.id == id):
+		score = score + 10
+		print("BODY ENTERED ENTERED + 10, SCORE = " + str(score))
 
 
 func _on_Score50_area_entered(body):
-	score = score + 50
-	print("BODY ENTERED ENTERED + 50, SCORE = " + str(score))
+	if(body.id == id):
+		score = score + 50
+		print("BODY ENTERED ENTERED + 50, SCORE = " + str(score))
 
 
 func _on_DoubleMove_area_entered(body):
-	move(move_space)
+	if(body.id == id):
+		move(move_space)
 
 
-func _on_Minus10_area_entered(_area):
-	score = score - 10
-	print("BODY ENTERED ENTERED - 10, SCORE = " + str(score))
+func _on_Minus10_area_entered(body):
+	if(body.id == id):
+		score = score - 10
+		print("BODY ENTERED ENTERED - 10, SCORE = " + str(score))
 
 
 func _on_Minus50_area_entered(body):
-	score = score - 50
-	print("BODY ENTERED ENTERED - 50, SCORE = " + str(score))
+	if(body.id == id):
+		score = score - 50
+		print("BODY ENTERED ENTERED - 50, SCORE = " + str(score))
 
 func _on_MoveBack2_area_entered(area):
 	pass # Replace with function body.
@@ -74,15 +81,3 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_ATest_area_entered(area):
 	print("HELLO WORLD")# Replace with function body.
-
-
-func _on_MoveBack2_area_exited(area):
-	print("EXITED move")# Replace with function body.
-
-
-func _on_Minus50_area_exited(area):
-	print("EXITED MINUS 50") # Replace with function body.
-
-
-func _on_Minus10_area_exited(area):
-	print("EXITED MINUS 10") # Replace with function body.

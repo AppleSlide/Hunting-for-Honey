@@ -10,6 +10,8 @@ var tilesize = 64
 var score = 0
 var move_space = 0
 
+var id = 3
+
 signal movedone
 
 
@@ -24,6 +26,8 @@ func move(spaces):
 		movespace()
 		yield(tween, "tween_completed")
 		GameState.update_spaceLabel(space)
+	collision.visible = true
+	collision.set_disabled(false)
 	emit_signal("movedone")
 
 func movespace():
@@ -45,29 +49,34 @@ func checkCollision():
 
 
 func _on_Score10_area_entered(area):
-	score = score + 10
-	print("ENTERED + 10, SCORE = " + str(score))
+	if(area.id == id):
+		score = score + 10
+		print("Player 4 ENTERED + 10, SCORE = " + str(score))
 
 
 func _on_Score50_area_entered(area):
-	score = score + 50
-	print("ENTERED + 50, SCORE = " + str(score))
+	if(area.id == id):
+		score = score + 50
+		print("Player 4 ENTERED + 50, SCORE = " + str(score))
 
 
 func _on_DoubleMove_area_entered(area):
-	move(move_space)
+	if(area.id == id):
+		move(move_space)
 
 
 func _on_Minus10_area_entered(area):
-	score = score - 10
-	print("ENTERED - 10, SCORE = " + str(score))
+	if(area.id == id):
+		score = score - 10
+		print("PLayer 4 ENTERED - 10, SCORE = " + str(score))
 
 
 func _on_Minus50_area_entered(area):
-	score = score - 50
-	print("ENTERED - 50, SCORE = " + str(score))
+	if(area.id == id):
+		score = score - 50
+		print("Player  4 ENTERED - 50, SCORE = " + str(score))
 
 
 func _on_MoveBack2_area_entered(area):
-	score = 1000
+	pass
 

@@ -2,10 +2,10 @@ extends Node2D
 
 
 onready var cam = $Camera2D
-onready var p1 = $Player1
-onready var p2 = $Player2
-onready var p3 = $Player3
-onready var p4 = $Player4
+onready var p1 = $Player10
+onready var p2 = $Player20
+onready var p3 = $Player30
+onready var p4 = $Player40
 onready var plabel = $HUD/HBoxContainer/PlayerLabel
 onready var spaceLabel = $HUD/HBoxContainer/SpaceLabel
 onready var moveBtn = $HUD/HBoxContainer/MoveButton
@@ -22,10 +22,14 @@ var honeyPoints = [0, 0, 0, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#p1.collision.set_disabled(true)
-	#p2.collision.set_disabled(true)
-	#p3.collision.set_disabled(true)
-	#p4.collision.set_disabled(true)
+	p1.collision.set_disabled(true)
+	p2.collision.set_visible(false)
+	p3.collision.set_visible(false)
+	p4.collision.set_visible(false)
+	p1.collision.set_visible(false)
+	p2.collision.set_disabled(true)
+	p3.collision.set_disabled(true)
+	p4.collision.set_disabled(true)
 	move_camera(p1)
 	GameState.currentPlayer = p1
 	GameState.currentPlayerLabel = "Player 1"
@@ -60,15 +64,20 @@ func _on_MoveButton_pressed():
 	print("NOW INDEX: " + str(nowIdx))
 	player.move(diceRoll + 1)
 	yield(player, 'movedone')
+	player.collision.visible = true
+	player.collision.set_disabled(false)
 	moveBtn.visible = false
 	honeyPoints[nowIdx] = honeyPoints[nowIdx] + player.score
+	print(player.score)
 	print("HONEY POINTS: " + str(honeyPoints[nowIdx]))
-	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
+	#$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
 	endBtn.visible = true
 	nowIdx = nowIdx + 1
 	if(nowIdx > 3):
 		nowIdx = 0
 	print("NOW INDEX: " + str(nowIdx))
+	#player.collision.visible = false
+	#player.collision.set_disabled(true)
 	##disableCollision()
 
 func _on_EndTurn_pressed():
@@ -82,20 +91,33 @@ func _on_Button_pressed():
 	GameState.currentPlayerLabel = nextPlayer[currPlayerIdx]
 	match currPlayerIdx:
 		0:
-			GameState.currentPlayer = p2
+			honeyPoints[0] = player.score
+			player = p2
 			currPlayerIdx = 1
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 		1:
-			GameState.currentPlayer = p3
+			honeyPoints[1] = player.score
+			player = p3
 			currPlayerIdx = 2
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 		2:
-			GameState.currentPlayer = p4
+			honeyPoints[2] = player.score
+			player = p4
 			currPlayerIdx = 3
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 		3:
-			GameState.currentPlayer = p1
+			honeyPoints[3] = player.score
+			player = p1
 			currPlayerIdx = 0
-	GameState.update_spaceLabel(GameState.currentPlayer.space)
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
+	GameState.update_spaceLabel(player.space)
 	update_label()
-	move_camera(GameState.currentPlayer)
+	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
+	move_camera(player)
 	$HUD/HBoxContainer/MoveButton.visible = false
 	$HUD/HBoxContainer/EndTurn.visible = false
 	$HUD/HBoxContainer/MoveButton.disabled = false

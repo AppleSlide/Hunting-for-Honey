@@ -20,7 +20,7 @@ extents = Vector2( 24.5, 22.75 )
 extents = Vector2( 23.125, 21.375 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 29.5, 30.5 )
+extents = Vector2( 19, 30.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.5, 26.5 )
@@ -80,13 +80,13 @@ script = ExtResource( 2 )
 
 [node name="GameBoard" parent="." instance=ExtResource( 1 )]
 
-[node name="Player4" parent="." instance=ExtResource( 11 )]
+[node name="Player40" parent="." instance=ExtResource( 11 )]
 
-[node name="Player3" parent="." instance=ExtResource( 10 )]
+[node name="Player30" parent="." instance=ExtResource( 10 )]
 
-[node name="Player2" parent="." instance=ExtResource( 12 )]
+[node name="Player20" parent="." instance=ExtResource( 12 )]
 
-[node name="Player1" parent="." instance=ExtResource( 3 )]
+[node name="Player10" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -197,7 +197,7 @@ position = Vector2( 350, 32 )
 shape = SubResource( 5 )
 
 [node name="CS4" type="CollisionShape2D" parent="Minus10"]
-position = Vector2( 477, 32 )
+position = Vector2( 476, 32 )
 shape = SubResource( 5 )
 
 [node name="CS5" type="CollisionShape2D" parent="Minus10"]
@@ -312,32 +312,40 @@ margin_bottom = 18.0
 text = "Space #"
 
 [node name="P1Score" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 94.0
+margin_top = 82.0
+margin_right = 137.0
+margin_bottom = 96.0
 text = "Score: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P2Score" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 100.0
+margin_top = 205.0
+margin_right = 143.0
+margin_bottom = 219.0
 text = "Score: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P3Score" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 100.0
+margin_top = 171.0
+margin_right = 143.0
+margin_bottom = 185.0
 text = "Score: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P4Score" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 97.0
+margin_top = 114.0
+margin_right = 140.0
+margin_bottom = 128.0
 text = "Score: "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -421,18 +429,36 @@ shape = SubResource( 17 )
 position = Vector2( 207, 162.5 )
 shape = SubResource( 18 )
 
-[connection signal="area_entered" from="Score10" to="Player1" method="_on_Score10_area_entered"]
-[connection signal="area_entered" from="DoubleMove" to="Player1" method="_on_DoubleMove_area_entered"]
-[connection signal="area_entered" from="Minus10" to="Player1" method="_on_Minus10_area_entered"]
-[connection signal="area_exited" from="Minus10" to="Player1" method="_on_Minus10_area_exited"]
-[connection signal="area_entered" from="Minus50" to="Player1" method="_on_Minus50_area_entered"]
-[connection signal="area_exited" from="Minus50" to="Player1" method="_on_Minus50_area_exited"]
-[connection signal="area_entered" from="MoveBack2" to="Player1" method="_on_MoveBack2_area_entered"]
-[connection signal="area_exited" from="MoveBack2" to="Player1" method="_on_MoveBack2_area_exited"]
+[connection signal="area_entered" from="Score10" to="Player40" method="_on_Score10_area_entered"]
+[connection signal="area_entered" from="Score10" to="Player30" method="_on_Score10_area_entered"]
+[connection signal="area_entered" from="Score10" to="Player20" method="_on_Score10_area_entered"]
+[connection signal="area_entered" from="Score10" to="Player10" method="_on_Score10_area_entered"]
+[connection signal="area_entered" from="DoubleMove" to="Player40" method="_on_DoubleMove_area_entered"]
+[connection signal="area_entered" from="DoubleMove" to="Player30" method="_on_DoubleMove_area_entered"]
+[connection signal="area_entered" from="DoubleMove" to="Player20" method="_on_DoubleMove_area_entered"]
+[connection signal="area_entered" from="DoubleMove" to="Player10" method="_on_DoubleMove_area_entered"]
+[connection signal="area_entered" from="Minus10" to="Player40" method="_on_Minus10_area_entered"]
+[connection signal="area_entered" from="Minus10" to="Player30" method="_on_Minus10_area_entered"]
+[connection signal="area_entered" from="Minus10" to="Player20" method="_on_Minus10_area_entered"]
+[connection signal="area_entered" from="Minus10" to="Player10" method="_on_Minus10_area_entered"]
+[connection signal="area_exited" from="Minus10" to="Player10" method="_on_Minus10_area_exited"]
+[connection signal="area_entered" from="Minus50" to="Player40" method="_on_Minus50_area_entered"]
+[connection signal="area_entered" from="Minus50" to="Player30" method="_on_Minus50_area_entered"]
+[connection signal="area_entered" from="Minus50" to="Player20" method="_on_Minus50_area_entered"]
+[connection signal="area_entered" from="Minus50" to="Player10" method="_on_Minus50_area_entered"]
+[connection signal="area_exited" from="Minus50" to="Player10" method="_on_Minus50_area_exited"]
+[connection signal="area_entered" from="MoveBack2" to="Player40" method="_on_MoveBack2_area_entered"]
+[connection signal="area_entered" from="MoveBack2" to="Player30" method="_on_MoveBack2_area_entered"]
+[connection signal="area_entered" from="MoveBack2" to="Player20" method="_on_MoveBack2_area_entered"]
+[connection signal="area_entered" from="MoveBack2" to="Player10" method="_on_MoveBack2_area_entered"]
+[connection signal="area_exited" from="MoveBack2" to="Player10" method="_on_MoveBack2_area_exited"]
 [connection signal="pressed" from="HUD/HBoxContainer/MoveButton" to="." method="_on_MoveButton_pressed"]
 [connection signal="pressed" from="HUD/HBoxContainer/EndTurn" to="." method="_on_EndTurn_pressed"]
 [connection signal="pressed" from="HUD/RollButton" to="." method="_on_RollButton_pressed"]
 [connection signal="timeout" from="HUD/RollTimer" to="." method="_on_RollTimer_timeout"]
 [connection signal="pressed" from="HUD/TurnSwitch/VBoxContainer/Button" to="." method="_on_Button_pressed"]
-[connection signal="area_entered" from="Score50" to="Player1" method="_on_Score50_area_entered"]
-[connection signal="area_entered" from="ATest" to="Player1" method="_on_ATest_area_entered"]
+[connection signal="area_entered" from="Score50" to="Player40" method="_on_Score50_area_entered"]
+[connection signal="area_entered" from="Score50" to="Player30" method="_on_Score50_area_entered"]
+[connection signal="area_entered" from="Score50" to="Player20" method="_on_Score50_area_entered"]
+[connection signal="area_entered" from="Score50" to="Player10" method="_on_Score50_area_entered"]
+[connection signal="area_entered" from="ATest" to="Player10" method="_on_ATest_area_entered"]
