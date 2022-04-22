@@ -8,7 +8,7 @@ var sprites = [preload("res://Assets/Grass1.png"), preload("res://Assets/Grass1.
 var space = 0
 var dir = Vector2.RIGHT
 var speed = 2
-var tilesize = 128
+var tilesize = 64
 var score = 0
 var move_space = 0
 
