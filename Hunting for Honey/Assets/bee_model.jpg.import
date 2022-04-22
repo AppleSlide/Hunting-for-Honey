@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/bee_model.jpg-791248169a70eae9fa2488e198e40a3f.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://Assets/Queen_bee_model.png"
+source_file="res://Assets/bee_model.jpg"
+dest_files=[ "res://.import/bee_model.jpg-791248169a70eae9fa2488e198e40a3f.stex" ]
+
 [params]
 
 compress/mode=0
