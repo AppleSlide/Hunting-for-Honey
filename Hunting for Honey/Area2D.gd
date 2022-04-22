@@ -29,16 +29,15 @@ func move(spaces):
 		movespace()
 		yield(tween, "tween_all_completed")
 		GameState.update_spaceLabel(space)
-	collision.disabled = false
 	emit_signal("movedone")
 
 func movespace():
 	match space:
 		0: dir = Vector2.RIGHT
-		11: dir = Vector2.DOWN
-		18: dir = Vector2.LEFT
-		29: dir = Vector2.UP
-	space = (space + 1) % 36
+		15: dir = Vector2.DOWN
+		24: dir = Vector2.LEFT
+		40: dir = Vector2.UP
+	space = (space + 1) % 48
 	tween.interpolate_property(self, "position", position,
 	position + dir * tilesize, 1.0/speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
