@@ -1,8 +1,46 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://GameBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/DiceSix.png" type="Texture" id=4]
+[ext_resource path="res://Assets/DiceOne.png" type="Texture" id=5]
+[ext_resource path="res://Assets/DiceTwo.png" type="Texture" id=6]
+[ext_resource path="res://Assets/DiceThree.png" type="Texture" id=7]
+[ext_resource path="res://Assets/DiceFour.png" type="Texture" id=8]
+[ext_resource path="res://Assets/DiceFive.png" type="Texture" id=9]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.5, 22.75 )
@@ -116,6 +154,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DiceRoll" type="AnimatedSprite" parent="HUD"]
+position = Vector2( 513, 316 )
+frames = SubResource( 13 )
+frame = 4
+
+[node name="RollButton" type="Button" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -19.0
+margin_top = -44.0
+margin_right = 17.0
+margin_bottom = -24.0
+text = "Roll"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RollTimer" type="Timer" parent="HUD"]
+wait_time = 5.0
+
 [node name="TurnSwitch" type="ColorRect" parent="HUD"]
 visible = false
 modulate = Color( 0.87451, 0.121569, 0.121569, 1 )
@@ -137,16 +197,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="HUD/TurnSwitch/VBoxContainer"]
-margin_left = 230.0
-margin_top = 75.0
-margin_right = 330.0
-margin_bottom = 95.0
+margin_right = 551.0
+margin_bottom = 14.0
 
 [node name="Button" type="Button" parent="HUD/TurnSwitch/VBoxContainer"]
-margin_left = 220.0
-margin_top = 100.0
-margin_right = 340.0
-margin_bottom = 140.0
+margin_top = 18.0
+margin_right = 551.0
+margin_bottom = 38.0
 text = "OK"
 
 [node name="Score10" type="Area2D" parent="."]
@@ -339,6 +396,8 @@ shape = SubResource( 6 )
 
 [connection signal="pressed" from="HUD/HBoxContainer/MoveButton" to="." method="_on_MoveButton_pressed"]
 [connection signal="pressed" from="HUD/HBoxContainer/EndTurn" to="." method="_on_EndTurn_pressed"]
+[connection signal="pressed" from="HUD/RollButton" to="." method="_on_RollButton_pressed"]
+[connection signal="timeout" from="HUD/RollTimer" to="." method="_on_RollTimer_timeout"]
 [connection signal="pressed" from="HUD/TurnSwitch/VBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="area_entered" from="Score10" to="Player1" method="_on_Score10_area_entered"]
 [connection signal="area_entered" from="Score50" to="Player1" method="_on_Score50_area_entered"]

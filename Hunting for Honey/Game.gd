@@ -11,6 +11,7 @@ onready var spaceLabel = $HUD/HBoxContainer/SpaceLabel
 onready var moveBtn = $HUD/HBoxContainer/MoveButton
 onready var endBtn = $HUD/HBoxContainer/EndTurn
 var rng = RandomNumberGenerator.new()
+var diceRoll = 0
 
 var nowIdx = 0
 
@@ -35,6 +36,8 @@ func _ready():
 	GameState.currentPlayer.collision.disabled = true
 	GameState.currentPlayerLabel = "Player 1"
 	update_label()
+	rng.randomize()
+	$HUD/HBoxContainer/MoveButton.hide()
 	
 
 
@@ -54,7 +57,7 @@ func _on_MoveButton_pressed():
 	print("NOW INDEX: " + str(nowIdx))
 	disableCollision()
 	GameState.currentPlayer.collision.disabled = true
-	GameState.currentPlayer.move(rng.randi_range(1,6))
+	GameState.currentPlayer.move(diceRoll + 1)
 	yield(GameState.currentPlayer, 'movedone')
 	GameState.currentPlayer.collision.disabled = false
 	enableCollision()
@@ -74,6 +77,8 @@ func _on_MoveButton_pressed():
 func _on_EndTurn_pressed():
 	$HUD/TurnSwitch/VBoxContainer/Label.text = nextPlayer[currPlayerIdx] + "'s Turn"
 	$HUD/TurnSwitch.visible = true
+	$HUD/RollButton.show()
+	
 
 
 func _on_Button_pressed():
@@ -106,10 +111,15 @@ func _on_Button_pressed():
 	GameState.update_spaceLabel(GameState.currentPlayer.space)
 	update_label()
 	move_camera(GameState.currentPlayer)
-	$HUD/HBoxContainer/MoveButton.visible = true
+	$HUD/HBoxContainer/MoveButton.visible = false
 	$HUD/HBoxContainer/EndTurn.visible = false
 	$HUD/HBoxContainer/MoveButton.disabled = false
 	$HUD/TurnSwitch.visible = false
+	
+	
+func diceRoller():
+	$HUD/DiceRoll.play()
+	$HUD/RollTimer.start()
 
 
 func disableCollision():
@@ -215,11 +225,17 @@ func enableCollision():
 
 
 
+func _on_RollButton_pressed():
+	diceRoller()
+	$HUD/RollButton.hide()
+	$HUD/HBoxContainer/MoveButton.hide()
 
 
-
-
-
-
-
-
+func _on_RollTimer_timeout():
+	$HUD/RollTimer.stop()
+	diceRoll = rng.randi_range(0, 5)
+	$HUD/DiceRoll.stop()
+	$HUD/DiceRoll.set_frame(diceRoll)
+	#$Roll.text = str(diceRoll + 1)
+	$HUD/HBoxContainer/MoveButton.show()
+	
