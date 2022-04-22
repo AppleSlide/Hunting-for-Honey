@@ -1,7 +1,6 @@
 extends Area2D
 
 
-onready var sprite = $Sprite
 onready var collision = $CollisionShape2D
 onready var tween = $Tween
 var space = 0
@@ -24,7 +23,6 @@ func move(spaces):
 	for n in spaces:
 		movespace()
 		yield(tween, "tween_completed")
-		#tween.stop()
 		GameState.update_spaceLabel(space)
 	emit_signal("movedone")
 
@@ -45,44 +43,31 @@ func checkCollision():
 		print("COLLISION SHOULD WORK")
 
 
-func _on_Score10_area_entered(body):
+
+func _on_Score10_area_entered(area):
 	score = score + 10
-	print("BODY ENTERED ENTERED + 10, SCORE = " + str(score))
+	print("ENTERED + 10, SCORE = " + str(score))
 
 
-func _on_Score50_area_entered(body):
+func _on_Score50_area_entered(area):
 	score = score + 50
-	print("BODY ENTERED ENTERED + 50, SCORE = " + str(score))
+	print("ENTERED + 50, SCORE = " + str(score))
 
 
-func _on_DoubleMove_area_entered(body):
+func _on_DoubleMove_area_entered(area):
 	move(move_space)
 
 
-func _on_Minus10_area_entered(_area):
+func _on_Minus10_area_entered(area):
 	score = score - 10
-	print("BODY ENTERED ENTERED - 10, SCORE = " + str(score))
+	print("ENTERED - 10, SCORE = " + str(score))
 
 
-func _on_Minus50_area_entered(body):
+func _on_Minus50_area_entered(area):
 	score = score - 50
-	print("BODY ENTERED ENTERED - 50, SCORE = " + str(score))
+	print("ENTERED - 50, SCORE = " + str(score))
+
 
 func _on_MoveBack2_area_entered(area):
-	pass # Replace with function body.
+	score = 1000
 
-
-func _on_ATest_area_entered(area):
-	print("HELLO WORLD")# Replace with function body.
-
-
-func _on_MoveBack2_area_exited(area):
-	print("EXITED move")# Replace with function body.
-
-
-func _on_Minus50_area_exited(area):
-	print("EXITED MINUS 50") # Replace with function body.
-
-
-func _on_Minus10_area_exited(area):
-	print("EXITED MINUS 10") # Replace with function body.
