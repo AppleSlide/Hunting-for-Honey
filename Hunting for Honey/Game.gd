@@ -25,6 +25,11 @@ func _ready():
 	p2.collision.disabled = true
 	p3.collision.disabled = true
 	p4.collision.disabled = true
+	
+	p1.sprite.set_texture(p1.sprites[0])
+	p2.sprite.set_texture(p2.sprites[1])
+	p3.sprite.set_texture(p3.sprites[2])
+	p4.sprite.set_texture(p4.sprites[3])
 	move_camera(p1)
 	GameState.currentPlayer = p1
 	GameState.currentPlayer.collision.disabled = true
@@ -58,7 +63,7 @@ func _on_MoveButton_pressed():
 	honeyPoints[nowIdx] = honeyPoints[nowIdx] + GameState.currentPlayer.score
 	print(honeyPoints[nowIdx])
 	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
-	GameState.currentPlayer.score = 0
+	#GameState.currentPlayer.score = 0
 	GameState.currentPlayer.collision.disabled = true
 	endBtn.visible = true
 	nowIdx = nowIdx + 1
@@ -78,21 +83,25 @@ func _on_Button_pressed():
 			GameState.currentPlayer = p2
 			disableCollision()
 			GameState.currentPlayer.collision.disabled = true
+			#GameState.currentPlayer.sprite.set_texture(GameState.currentPlayer.sprites[currPlayerIdx])
 			currPlayerIdx = 1
 		1:
 			GameState.currentPlayer = p3
 			disableCollision()
 			GameState.currentPlayer.collision.disabled = true
+			#GameState.currentPlayer.sprite.set_texture(GameState.currentPlayer.sprites[currPlayerIdx])
 			currPlayerIdx = 2
 		2:
 			GameState.currentPlayer = p4
 			disableCollision()
 			GameState.currentPlayer.collision.disabled = true
+			#GameState.currentPlayer.sprite.set_texture(GameState.currentPlayer.sprites[currPlayerIdx])
 			currPlayerIdx = 3
 		3:
 			GameState.currentPlayer = p1
 			disableCollision()
 			GameState.currentPlayer.collision.disabled = true
+			#GameState.currentPlayer.sprite.set_texture(GameState.currentPlayer.sprites[currPlayerIdx])
 			currPlayerIdx = 0
 	GameState.update_spaceLabel(GameState.currentPlayer.space)
 	update_label()

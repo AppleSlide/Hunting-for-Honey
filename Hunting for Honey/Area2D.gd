@@ -5,7 +5,7 @@ onready var sprite = $Sprite
 onready var collision = $CollisionShape2D
 export var player = 0;
 onready var tween = $Tween
-var sprites = [preload("res://Assets/Grass1.png"), preload("res://Assets/Grass1.png"), preload("res://Assets/Stup.png"), preload("res://Assets/Queen_bee_model.jpg")]
+var sprites = [preload("res://Assets/Stup.png"), preload("res://Assets/Grass1.png"), preload("res://Assets/bee_model.jpg"), preload("res://Assets/DiceFive.png")]
 var space = 0
 var dir = Vector2.RIGHT
 var speed = 2
@@ -19,7 +19,7 @@ signal movedone
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	##sprite.texture = sprites[player]
-	sprite.set_texture(sprites[player])
+	##sprite.set_texture(sprites[player])
 	position.x = 30
 	position.y = 30
 
@@ -29,6 +29,7 @@ func move(spaces):
 		movespace()
 		yield(tween, "tween_all_completed")
 		GameState.update_spaceLabel(space)
+	collision.disabled = false
 	emit_signal("movedone")
 
 func movespace():
