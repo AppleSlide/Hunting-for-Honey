@@ -24,6 +24,7 @@ func _ready():
 
 func move(spaces):
 	move_space = spaces
+	totalspaces += spaces
 	for n in spaces:
 		movespace()
 		yield(tween, "tween_completed")
@@ -38,7 +39,6 @@ func movespace():
 		15: dir = Vector2.DOWN
 		23: dir = Vector2.LEFT
 		38: dir = Vector2.UP
-	totalspaces = space + 1
 	space = (space + 1) % 46
 	if(space > 35):
 		around = 1
@@ -56,22 +56,24 @@ func checkCollision():
 func _on_Score10_area_entered(area):
 	if(area.id == id):
 		score = score + 10
-		if(score > 150 and around == 1 and totalspaces >= 46):
+		if(score > 20 and around == 1 and totalspaces >= 46):
 			emit_signal("gameover3")
-		elif(score < 150 and around == 1 and totalspaces >= 46):
+		elif(score < 20 and around == 1 and totalspaces >= 46):
 			score = score + 50
 			around = 0
+			totalspaces = totalspaces - 46
 		print("Player 3 ENTERED + 10, SCORE = " + str(score))
 
 
 func _on_Score50_area_entered(area):
 	if(area.id == id):
 		score = score + 50
-		if(score > 150 and around == 1 and totalspaces >= 46):
+		if(score > 20 and around == 1 and totalspaces >= 46):
 			emit_signal("gameover3")
-		elif(score < 150 and around == 1 and totalspaces >= 46):
+		elif(score < 20 and around == 1 and totalspaces >= 46):
 			score = score + 50
 			around = 0
+			totalspaces = totalspaces - 46
 		print("PLayer 3 ENTERED + 50, SCORE = " + str(score))
 
 
@@ -83,22 +85,24 @@ func _on_DoubleMove_area_entered(area):
 func _on_Minus10_area_entered(area):
 	if(area.id == id):
 		score = score - 10
-		if(score > 150 and around == 1 and totalspaces >= 46):
+		if(score > 20 and around == 1 and totalspaces >= 46):
 			emit_signal("gameover3")
-		elif(score < 150 and around == 1 and totalspaces >= 46):
+		elif(score < 20 and around == 1 and totalspaces >= 46):
 			score = score + 50
 			around = 0
+			totalspaces = totalspaces - 46
 		print("Player 3 ENTERED - 10, SCORE = " + str(score))
 
 
 func _on_Minus50_area_entered(area):
 	if(area.id == id):
 		score = score - 50
-		if(score > 150 and around == 1 and totalspaces >= 46):
+		if(score > 20 and around == 1 and totalspaces >= 46):
 			emit_signal("gameover3")
-		elif(score < 150 and around == 1 and totalspaces >= 46):
+		elif(score < 20 and around == 1 and totalspaces >= 46):
 			score = score + 50
 			around = 0
+			totalspaces = totalspaces - 46
 		print("PLAYER 3 ENTERED - 50, SCORE = " + str(score))
 
 
@@ -109,7 +113,7 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score > 150):
+		if(score > 20):
 			emit_signal("gameover3")
 	else:
 		score = score + 50
