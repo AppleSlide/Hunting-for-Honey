@@ -153,7 +153,6 @@ func disableCollision():
 	$Score10/CS19.set_disabled(true)
 	$Score10/CS20.set_disabled(true)
 	
-	$Score50/CollisionShape2D.set_disabled(true)
 	$Score50/CollisionShape2D2.set_disabled(true)
 	$Score50/CollisionShape2D3.set_disabled(true)
 	
@@ -204,7 +203,6 @@ func enableCollision():
 	$Score10/CS19.set_disabled(false)
 	$Score10/CS20.set_disabled(false)
 	
-	$Score50/CollisionShape2D.set_disabled(false)
 	$Score50/CollisionShape2D2.set_disabled(false)
 	$Score50/CollisionShape2D3.set_disabled(false)
 	
@@ -233,6 +231,17 @@ func enableCollision():
 	$MoveBack2/CollisionShape2D3.set_disabled(false)
 
 
+func _on_Player10_gameover():
+	plabel.text = "GAME OVER PLAYER 1 WINS!!!!"
+
+func _on_Player20_gameover2():
+	plabel.text = "GAME OVER PLAYER 2 WINS!!!!"
+
+func _on_Player30_gameover3():
+	plabel.text = "GAME OVER PLAYER 3 WINS!!!!"
+
+func _on_Player40_gameover4():
+	plabel.text = "GAME OVER PLAYER 4 WINS!!!!"
 
 func _on_RollButton_pressed():
 	diceRoller()

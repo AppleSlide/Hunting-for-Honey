@@ -11,8 +11,11 @@ var tilesize = 64
 var score = 0
 var move_space = 0
 var id = 0
+var around = 1
+var totalspaces = 0
 
 signal movedone
+signal gameover
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,9 +37,12 @@ func movespace():
 	match space:
 		0: dir = Vector2.RIGHT
 		15: dir = Vector2.DOWN
-		24: dir = Vector2.LEFT
-		40: dir = Vector2.UP
-	space = (space + 1) % 48
+		23: dir = Vector2.LEFT
+		38: dir = Vector2.UP
+	totalspaces = space + 1
+	space = (space + 1) % 46
+	if(space > 35):
+		around = 1
 	tween.interpolate_property(self, "position", position,
 	position + dir * tilesize, 1.0/speed, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
@@ -50,12 +56,22 @@ func checkCollision():
 func _on_Score10_area_entered(body):
 	if(body.id == id):
 		score = score + 10
+		if(score > 150 and around == 1 and totalspaces >= 46):
+			emit_signal("gameover")
+		elif(score < 150 and around == 1 and totalspaces >= 46):
+			score = score + 50
+			around = 0
 		print("BODY ENTERED ENTERED + 10, SCORE = " + str(score))
 
 
 func _on_Score50_area_entered(body):
 	if(body.id == id):
 		score = score + 50
+		if(score > 150 and around == 1 and totalspaces >= 46):
+			emit_signal("gameover")
+		elif(score < 150 and around == 1 and totalspaces >= 46):
+			score = score + 50
+			around = 0
 		print("BODY ENTERED ENTERED + 50, SCORE = " + str(score))
 
 
@@ -67,12 +83,22 @@ func _on_DoubleMove_area_entered(body):
 func _on_Minus10_area_entered(body):
 	if(body.id == id):
 		score = score - 10
+		if(score > 150 and around == 1 and totalspaces >= 46):
+			emit_signal("gameover")
+		elif(score < 150 and around == 1 and totalspaces >= 46):
+			score = score + 50
+			around = 0
 		print("BODY ENTERED ENTERED - 10, SCORE = " + str(score))
 
 
 func _on_Minus50_area_entered(body):
 	if(body.id == id):
 		score = score - 50
+		if(score > 150 and around == 1 and totalspaces >= 46):
+			emit_signal("gameover")
+		elif(score < 150 and around == 1 and totalspaces >= 46):
+			score = score + 50
+			around = 0
 		print("BODY ENTERED ENTERED - 50, SCORE = " + str(score))
 
 func _on_MoveBack2_area_entered(area):
@@ -81,3 +107,12 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_ATest_area_entered(area):
 	print("HELLO WORLD")# Replace with function body.
+
+
+func _on_WinPlane_area_entered(area):
+	if(area.id == id):
+		if(score > 150):
+			emit_signal("gameover")
+	else:
+		score = score + 50
+		
