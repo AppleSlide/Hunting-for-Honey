@@ -4,7 +4,7 @@ extends StaticBody2D
 onready var sprite = $Sprite
 export var player = 0;
 onready var tween = $Tween
-var sprites = [preload("res://Assets/Grass1.png"), preload("res://Assets/Grass1.png"), preload("res://Assets/Stup.png"), preload("res://Assets/Queen_bee_model.jpg")]
+var sprites = [preload("res://Assets/Grass1.png"), preload("res://Assets/Grass1.png"), preload("res://Assets/Stup.png")]
 var space = 0
 var dir = Vector2.RIGHT
 var speed = 2
