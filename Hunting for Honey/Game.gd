@@ -116,7 +116,10 @@ func _on_Button_pressed():
 			player.collision.set_visible(false)
 	GameState.update_spaceLabel(player.space)
 	update_label()
-	$HUD/P1Score.text = "Player 1: " + str(honeyPoints[0]) + " Player 2: " + str(honeyPoints[1]) + " Player 3: " + str(honeyPoints[2]) + " Player 4: " + str(honeyPoints[3])
+	$HUD/ScoreColor/ScoreBox/P1Score.text = "Player 1: " + str(honeyPoints[0])
+	$HUD/ScoreColor/ScoreBox/P2Score.text = "Player 2: " + str(honeyPoints[1]) 
+	$HUD/ScoreColor/ScoreBox/P3Score.text = "Player 3: " + str(honeyPoints[2])
+	$HUD/ScoreColor/ScoreBox/P4Score.text = "Player 4: " + str(honeyPoints[3])
 	move_camera(player)
 	$HUD/HBoxContainer/MoveButton.visible = false
 	$HUD/HBoxContainer/EndTurn.visible = false
