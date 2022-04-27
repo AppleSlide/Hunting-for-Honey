@@ -466,7 +466,6 @@ shape = SubResource( 19 )
 [connection signal="gameover4" from="Player40" to="." method="_on_Player40_gameover4"]
 [connection signal="gameover3" from="Player30" to="." method="_on_Player30_gameover3"]
 [connection signal="gameover2" from="Player20" to="." method="_on_Player20_gameover2"]
-[connection signal="gameover" from="Player10" to="." method="_on_Player10_gameover"]
 [connection signal="area_entered" from="Score10" to="Player40" method="_on_Score10_area_entered"]
 [connection signal="area_entered" from="Score10" to="Player30" method="_on_Score10_area_entered"]
 [connection signal="area_entered" from="Score10" to="Player20" method="_on_Score10_area_entered"]
