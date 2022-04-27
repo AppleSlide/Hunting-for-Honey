@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://GameBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Player4.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Player2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Stup.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Bees.png" type="Texture" id=14]
+[ext_resource path="res://Assets/slkscr.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24.5, 22.75 )
@@ -28,6 +30,9 @@ extents = Vector2( 24.5, 26.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 27.5, 27.5 )
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 15 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 5 )
@@ -80,6 +85,11 @@ extents = Vector2( 25.5, 25 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 510.5, 299 )
+scale = Vector2( 0.884948, 0.923077 )
+texture = ExtResource( 14 )
 
 [node name="GameBoard" parent="." instance=ExtResource( 1 )]
 
@@ -283,8 +293,9 @@ __meta__ = {
 }
 
 [node name="MoveButton" type="Button" parent="HUD/HBoxContainer"]
-margin_right = 47.0
+margin_right = 59.0
 margin_bottom = 23.0
+custom_fonts/font = SubResource( 21 )
 text = "Move"
 
 [node name="EndTurn" type="Button" parent="HUD/HBoxContainer"]
@@ -292,26 +303,29 @@ visible = false
 margin_left = 51.0
 margin_right = 86.0
 margin_bottom = 23.0
+custom_fonts/font = SubResource( 21 )
 text = "End"
 
 [node name="PlayerLabel" type="Label" parent="HUD/HBoxContainer"]
-margin_left = 51.0
-margin_top = 4.0
-margin_right = 59.0
-margin_bottom = 18.0
+margin_left = 63.0
+margin_top = 3.0
+margin_right = 74.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 21 )
 text = "h"
 
 [node name="Label" type="Label" parent="HUD/HBoxContainer"]
-margin_left = 63.0
+margin_left = 78.0
 margin_top = 4.0
-margin_right = 63.0
+margin_right = 78.0
 margin_bottom = 18.0
 
 [node name="SpaceLabel" type="Label" parent="HUD/HBoxContainer"]
-margin_left = 67.0
-margin_top = 4.0
-margin_right = 117.0
-margin_bottom = 18.0
+margin_left = 82.0
+margin_top = 3.0
+margin_right = 157.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 21 )
 text = "Space #"
 
 [node name="DiceRoll" type="AnimatedSprite" parent="HUD"]
@@ -324,10 +338,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -19.0
-margin_top = -44.0
-margin_right = 17.0
-margin_bottom = -24.0
+margin_left = -26.0
+margin_top = -43.0
+margin_right = 28.0
+margin_bottom = -20.0
+custom_fonts/font = SubResource( 21 )
 text = "Roll"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -370,7 +385,7 @@ text = "OK"
 self_modulate = Color( 0.137255, 0.0235294, 0.0235294, 1 )
 margin_left = 670.0
 margin_top = 78.0
-margin_right = 781.0
+margin_right = 849.0
 margin_bottom = 186.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -388,18 +403,20 @@ __meta__ = {
 
 [node name="P1Score" type="Label" parent="HUD/ScoreColor/ScoreBox"]
 modulate = Color( 0.905882, 0.980392, 0.0156863, 1 )
-margin_right = 98.0
-margin_bottom = 14.0
+margin_right = 159.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 21 )
 text = "Player 1 Score: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P2Score" type="Label" parent="HUD/ScoreColor/ScoreBox"]
-modulate = Color( 0.431373, 0.839216, 0.14902, 1 )
-margin_top = 18.0
-margin_right = 98.0
-margin_bottom = 32.0
+modulate = Color( 1, 0, 0, 1 )
+margin_top = 21.0
+margin_right = 159.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 21 )
 text = "Player 2 Score: "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -407,19 +424,21 @@ __meta__ = {
 
 [node name="P3Score" type="Label" parent="HUD/ScoreColor/ScoreBox"]
 modulate = Color( 0.415686, 0.54902, 0.913725, 1 )
-margin_top = 36.0
-margin_right = 98.0
-margin_bottom = 50.0
+margin_top = 42.0
+margin_right = 159.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 21 )
 text = "Player 3 Score: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="P4Score" type="Label" parent="HUD/ScoreColor/ScoreBox"]
-self_modulate = Color( 0.980392, 0.0235294, 0.0235294, 1 )
-margin_top = 54.0
-margin_right = 98.0
-margin_bottom = 68.0
+self_modulate = Color( 0.054902, 1, 0, 1 )
+margin_top = 63.0
+margin_right = 159.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 21 )
 text = "Player 4 Score: "
 __meta__ = {
 "_edit_use_anchors_": false
