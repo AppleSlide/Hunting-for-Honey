@@ -115,7 +115,7 @@ func _on_ATest_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score > 20):
+		if(score > 100):
 			emit_signal("gameover")
 	else:
 		score = score + 50

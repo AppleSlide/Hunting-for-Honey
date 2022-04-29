@@ -118,7 +118,7 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score > 20):
+		if(score > 100):
 			emit_signal("gameover2")
 	else:
 		score = score + 50
