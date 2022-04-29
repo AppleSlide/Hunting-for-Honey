@@ -37,6 +37,7 @@ func _ready():
 	rng.randomize()
 	$HUD/HBoxContainer/MoveButton.hide()
 	$HUD/Music.play()
+	$HUD/NewGame.hide()
 	
 
 
@@ -237,15 +238,19 @@ func enableCollision():
 
 func _on_Player10_gameover():
 	plabel.text = "GAME OVER PLAYER 1 WINS!!!!"
+	$HUD/NewGame.show()
 
 func _on_Player20_gameover2():
 	plabel.text = "GAME OVER PLAYER 2 WINS!!!!"
+	$HUD/NewGame.show()
 
 func _on_Player30_gameover3():
 	plabel.text = "GAME OVER PLAYER 3 WINS!!!!"
+	$HUD/NewGame.show()
 
 func _on_Player40_gameover4():
 	plabel.text = "GAME OVER PLAYER 4 WINS!!!!"
+	$HUD/NewGame.show()
 
 func _on_RollButton_pressed():
 	diceRoller()
@@ -264,3 +269,43 @@ func _on_RollTimer_timeout():
 
 func _on_ATest_area_entered():
 	print("HELLO WORLD")
+	
+
+func _on_NewGame_pressed():
+	p1.collision.set_disabled(true)
+	p2.collision.set_visible(false)
+	p3.collision.set_visible(false)
+	p4.collision.set_visible(false)
+	p1.collision.set_visible(false)
+	p2.collision.set_disabled(true)
+	p3.collision.set_disabled(true)
+	p4.collision.set_disabled(true)
+	$Player10.score = 0
+	$Player20.score = 0
+	$Player30.score = 0
+	$Player40.score = 0
+	honeyPoints = [0, 0, 0, 0]
+	$Player10.space = 0
+	$Player20.space = 0
+	$Player30.space = 0
+	$Player40.space = 0
+	GameState.update_spaceLabel(player.space)
+	$HUD/ScoreColor/ScoreBox/P1Score.text = "Player 1: " + str(honeyPoints[0])
+	$HUD/ScoreColor/ScoreBox/P2Score.text = "Player 2: " + str(honeyPoints[1]) 
+	$HUD/ScoreColor/ScoreBox/P3Score.text = "Player 3: " + str(honeyPoints[2])
+	$HUD/ScoreColor/ScoreBox/P4Score.text = "Player 4: " + str(honeyPoints[3])
+	move_camera(p1)
+	GameState.currentPlayer = p1
+	nowIdx = 0
+	GameState.currentPlayerLabel = "Player 1"
+	update_label()
+	currPlayerIdx = 0
+	GameState.currentPlayerLabel = nextPlayer[currPlayerIdx]
+	$Player10.position.x = 30
+	$Player10.position.y = 30
+	$Player20.position.x = 30
+	$Player20.position.y = 30
+	$Player30.position.x = 30
+	$Player30.position.y = 30
+	$Player40.position.x = 30
+	$Player40.position.y = 30
