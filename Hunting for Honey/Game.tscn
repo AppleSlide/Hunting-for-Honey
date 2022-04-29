@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=42 format=2]
+=======
+[gd_scene load_steps=36 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://GameBoard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -15,6 +19,7 @@
 [ext_resource path="res://Assets/Stup.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Bees.png" type="Texture" id=14]
 [ext_resource path="res://Assets/slkscr.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Assets/Changes.mp3" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=23]
 size = 32
@@ -947,6 +952,7 @@ position = Vector2( 668, 287 )
 scale = Vector2( 3.30078, 3.60937 )
 texture = ExtResource( 13 )
 
+<<<<<<< Updated upstream
 [node name="ColorRect" type="ColorRect" parent="HUD"]
 margin_left = 75.0
 margin_top = 70.0
@@ -975,6 +981,10 @@ text = "HOW TO PLAY:
 while having 100 or more 
 points wins
 "
+=======
+[node name="Music" type="AudioStreamPlayer2D" parent="HUD"]
+stream = ExtResource( 16 )
+>>>>>>> Stashed changes
 
 [node name="Score50" type="Area2D" parent="."]
 
