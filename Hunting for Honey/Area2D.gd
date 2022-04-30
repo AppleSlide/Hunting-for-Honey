@@ -30,7 +30,7 @@ func move(spaces):
 		movespace()
 		yield(tween, "tween_completed")
 		GameState.update_spaceLabel(space)
-	collision.visible = true
+	collision.set_visible(true)
 	collision.set_disabled(false)
 	emit_signal("movedone")
 
@@ -82,7 +82,7 @@ func _on_Score50_area_entered(body):
 func _on_DoubleMove_area_entered(body):
 	if(body.id == id):
 		collision.set_disabled(true)
-		collision.visible = false
+		collision.set_visible(false)
 		move(move_space)
 
 
@@ -121,12 +121,11 @@ func _on_ATest_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
+		score = score + 50
+		around = 0
+		totalspaces2 = 0
+		collision.set_disabled(true)
+		collision.set_visible(false)
 		if(score >= 100):
 			emit_signal("gameover")
-		else:
-			score = score + 50
-			around = 0
-			totalspaces2 = 0
-			collision.set_disabled(true)
-			collision.visible = false
-		
+			

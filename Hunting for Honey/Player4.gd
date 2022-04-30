@@ -82,7 +82,7 @@ func _on_Score50_area_entered(area):
 func _on_DoubleMove_area_entered(area):
 	if(area.id == id):
 		collision.set_disabled(true)
-		collision.visible = false
+		collision.set_visible(false)
 		move(move_space)
 		
 
@@ -120,11 +120,11 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score >= 100):
-			emit_signal("gameover4")
-	else:
 		score = score + 50
 		around = 0
 		total_spaces = 0
 		collision.set_disabled(true)
-		collision.visible = false
+		collision.set_visible(false)
+		if(score >= 100):
+			emit_signal("gameover4")
+		
