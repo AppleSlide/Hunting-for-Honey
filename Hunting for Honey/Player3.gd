@@ -56,9 +56,10 @@ func checkCollision():
 func _on_Score10_area_entered(area):
 	if(area.id == id):
 		score = score + 10
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(totalspaces)  )
+		if(score >= 100 and around == 1 and totalspaces > 46):
 			emit_signal("gameover3")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and totalspaces > 46):
 			score = score + 50
 			around = 0
 			totalspaces = totalspaces - 46
@@ -68,9 +69,10 @@ func _on_Score10_area_entered(area):
 func _on_Score50_area_entered(area):
 	if(area.id == id):
 		score = score + 50
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(totalspaces)  )
+		if(score >= 100 and around == 1 and totalspaces > 46):
 			emit_signal("gameover3")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and totalspaces > 46):
 			score = score + 50
 			around = 0
 			totalspaces = totalspaces - 46
@@ -79,15 +81,18 @@ func _on_Score50_area_entered(area):
 
 func _on_DoubleMove_area_entered(area):
 	if(area.id == id):
+		collision.set_disabled(true)
+		collision.visible = false
 		move(move_space)
 
 
 func _on_Minus10_area_entered(area):
 	if(area.id == id):
 		score = score - 10
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(totalspaces)  )
+		if(score >= 100 and around == 1 and totalspaces > 46):
 			emit_signal("gameover3")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and totalspaces > 46):
 			score = score + 50
 			around = 0
 			totalspaces = totalspaces - 46
@@ -97,9 +102,10 @@ func _on_Minus10_area_entered(area):
 func _on_Minus50_area_entered(area):
 	if(area.id == id):
 		score = score - 50
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(totalspaces)  )
+		if(score >= 100 and around == 1 and totalspaces > 46):
 			emit_signal("gameover3")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and totalspaces > 46):
 			score = score + 50
 			around = 0
 			totalspaces = totalspaces - 46
@@ -113,7 +119,11 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score > 100):
+		if(score >= 100):
 			emit_signal("gameover3")
-	else:
-		score = score + 50
+		else:
+			score = score + 50
+			around = 0
+			totalspaces = 0
+			collision.set_disabled(true)
+			collision.visible = false

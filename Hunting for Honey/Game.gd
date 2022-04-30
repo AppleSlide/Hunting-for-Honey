@@ -36,7 +36,7 @@ func _ready():
 	update_label()
 	rng.randomize()
 	$HUD/HBoxContainer/MoveButton.hide()
-	$HUD/Music.play()
+	#$HUD/Music.play()
 	$HUD/NewGame.hide()
 	
 
@@ -80,6 +80,8 @@ func _on_MoveButton_pressed():
 	print("NOW INDEX: " + str(nowIdx))
 	#player.collision.visible = false
 	#player.collision.set_disabled(true)
+	#player.collision.visible = false
+	#player.collision.set_disabled(true)
 	##disableCollision()
 
 func _on_EndTurn_pressed():
@@ -94,24 +96,32 @@ func _on_Button_pressed():
 	match currPlayerIdx:
 		0:
 			honeyPoints[0] = player.score
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 			player = p2
 			currPlayerIdx = 1
 			player.collision.set_disabled(true)
 			player.collision.set_visible(false)
 		1:
 			honeyPoints[1] = player.score
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 			player = p3
 			currPlayerIdx = 2
 			player.collision.set_disabled(true)
 			player.collision.set_visible(false)
 		2:
 			honeyPoints[2] = player.score
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 			player = p4
 			currPlayerIdx = 3
 			player.collision.set_disabled(true)
 			player.collision.set_visible(false)
 		3:
 			honeyPoints[3] = player.score
+			player.collision.set_disabled(true)
+			player.collision.set_visible(false)
 			player = p1
 			currPlayerIdx = 0
 			player.collision.set_disabled(true)
@@ -289,6 +299,14 @@ func _on_NewGame_pressed():
 	$Player20.space = 0
 	$Player30.space = 0
 	$Player40.space = 0
+	$Player10.totalspaces2 = 0
+	$Player20.totalspaces1 = 0
+	$Player30.totalspaces = 0
+	$Player40.total_spaces = 0
+	$Player10.around = 0
+	$Player20.around = 0
+	$Player30.around = 0
+	$Player40.around = 0
 	GameState.update_spaceLabel(player.space)
 	$HUD/ScoreColor/ScoreBox/P1Score.text = "Player 1: " + str(honeyPoints[0])
 	$HUD/ScoreColor/ScoreBox/P2Score.text = "Player 2: " + str(honeyPoints[1]) 

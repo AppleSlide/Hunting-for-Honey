@@ -11,7 +11,7 @@ var score = 0
 var move_space = 0
 var around = 0
 var id = 3
-var totalspaces = 0
+var total_spaces = 0
 
 signal movedone
 signal gameover4
@@ -24,7 +24,7 @@ func _ready():
 
 func move(spaces):
 	move_space = spaces
-	totalspaces += spaces
+	total_spaces += spaces
 	for n in spaces:
 		movespace()
 		yield(tween, "tween_completed")
@@ -56,55 +56,60 @@ func checkCollision():
 func _on_Score10_area_entered(area):
 	if(area.id == id):
 		score = score + 10
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(total_spaces)  )
+		if(score >= 100 and around == 1 and total_spaces > 46):
 			emit_signal("gameover4")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and total_spaces > 46):
 			score = score + 50
 			around = 0
-			totalspaces = totalspaces - 46
+			total_spaces = total_spaces - 46
 		print("Player 4 ENTERED + 10, SCORE = " + str(score))
 
 
 func _on_Score50_area_entered(area):
 	if(area.id == id):
 		score = score + 50
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(total_spaces)  )
+		if(score >= 100 and around == 1 and total_spaces > 46):
 			emit_signal("gameover4")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and total_spaces > 46):
 			score = score + 50
 			around = 0
-			totalspaces = totalspaces - 46
+			total_spaces = total_spaces - 46
 		print("Player 4 ENTERED + 50, SCORE = " + str(score))
 
 
 func _on_DoubleMove_area_entered(area):
 	if(area.id == id):
+		collision.set_disabled(true)
+		collision.visible = false
 		move(move_space)
+		
 
 
 func _on_Minus10_area_entered(area):
 	if(area.id == id):
 		score = score - 10
-		print("TOTAL SPACES: " + str(totalspaces)  )
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(total_spaces)  )
+		if(score >= 100 and around == 1 and total_spaces > 46):
 			emit_signal("gameover4")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and total_spaces > 46):
 			score = score + 50
 			around = 0
-			totalspaces = totalspaces - 46
+			total_spaces = total_spaces - 46
 		print("PLayer 4 ENTERED - 10, SCORE = " + str(score))
 
 
 func _on_Minus50_area_entered(area):
 	if(area.id == id):
 		score = score - 50
-		print("TOTAL SPACES: " + str(totalspaces)  )
-		if(score > 20 and around == 1 and totalspaces >= 46):
+		print("TOTAL SPACES: " + str(total_spaces)  )
+		if(score >= 100 and around == 1 and total_spaces > 46):
 			emit_signal("gameover4")
-		elif(score < 20 and around == 1 and totalspaces >= 46):
+		elif(score < 100 and around == 1 and total_spaces > 46):
 			score = score + 50
 			around = 0
-			totalspaces = totalspaces - 46
+			total_spaces = total_spaces - 46
 		print("Player  4 ENTERED - 50, SCORE = " + str(score))
 
 
@@ -115,7 +120,11 @@ func _on_MoveBack2_area_entered(area):
 
 func _on_WinPlane_area_entered(area):
 	if(area.id == id):
-		if(score > 100):
+		if(score >= 100):
 			emit_signal("gameover4")
 	else:
 		score = score + 50
+		around = 0
+		total_spaces = 0
+		collision.set_disabled(true)
+		collision.visible = false
