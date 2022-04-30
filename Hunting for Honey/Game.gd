@@ -36,7 +36,7 @@ func _ready():
 	update_label()
 	rng.randomize()
 	$HUD/HBoxContainer/MoveButton.hide()
-	#$HUD/Music.play()
+	$HUD/Music.play()
 	$HUD/NewGame.hide()
 	
 
